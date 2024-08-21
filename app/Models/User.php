@@ -6,62 +6,55 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        'user_id', 
-        'is_admin', 
-        'email_account', 
-        'password', 
-        'pseudo_user', 
-        'email', 
-        'tel', 
-        'description', 
-        'slug', 
-        'style', 
-        'instagram', 
-        'img_profil', 
-        'status_profil', 
-        'city', 
-        'departement', 
-        'coordonnes', 
-        'tattooshop', 
-        'title', 
-        'meta_description', 
+        'user_id',
+        'is_admin',
+        'email_account',
+        'password',
+        'pseudo_user',
+        'email',
+        'tel',
+        'description',
+        'slug',
+        'style',
+        'instagram',
+        'img_profil',
+        'status_profil',
+        'city',
+        'departement',
+        'coordonnes',
+        'tattooshop',
+        'title',
+        'meta_description',
         'tattooshop_id'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        // 'password' => 'hashed', // A commenter ou supprimer
+    ];
+
+    public function getJWTIdentifier()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 
     public function tattooshop()
