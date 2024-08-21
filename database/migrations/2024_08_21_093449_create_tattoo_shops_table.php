@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_art_styles', function (Blueprint $table) {
+        Schema::create('tattoo_shops', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_art_styles');
+        Schema::dropIfExists('tattoo_shops');
     }
 };
