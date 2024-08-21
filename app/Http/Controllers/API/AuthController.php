@@ -19,43 +19,66 @@ class AuthController extends Controller
             'pseudo_user' => 'required|string|min:2|max:255',
             'email_account' => 'required|email_account|unique:users',
             'password' => 'required|string|min:6|max:255',
-            'is_admin' => 'nullable',
+            'role_id' => 'nullable',
             'email' => 'nullable',
-            'tel'=>'nullable',
-            'description'=>'nullable',
-            'slug'=>'nullable',
-            'style'=>'nullable',
-            'instagram'=>'nullable',
-            'img_profil'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'status_profil'=>'nullable',
-            'city'=>'nullable',
-            'departement'=>'nullable',
-            'coordonnes'=>'nullable',
-            'tattooshop'=>'nullable',
-            'title'=>'nullable',
-            'meta_description'=>'nullable',
-            'tattooshop_id'=>'nullable',
+            'tel' => 'nullable',
+            'description' => 'nullable',
+            'slug' => 'nullable',
+            'style' => 'nullable',
+            'instagram' => 'nullable',
+            'img_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'status_profil' => 'nullable',
+            'city' => 'nullable',
+            'departement' => 'nullable',
+            'coordonnes' => 'nullable',
+            'tattooshop' => 'nullable',
+            'title' => 'nullable',
+            'meta_description' => 'nullable',
+            'tattooshop_id' => 'nullable',
         ]);
+        $filename = "";
+        if ($request->hasFile('img_profil')) {
+            // On récupère le nom du fichier avec son extension, résultat $filenameWithExt : "jeanmiche.jpg"
+            $filenameWithExt = $request->file('img_profil')->getClientOriginalName();
+            $filenameWithExt = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // On récupère l'extension du fichier, résultat $extension : ".jpg"
+            $extension = $request->file('img_profil')->getClientOriginalExtension();
+            // On créer un nouveau fichier avec le nom + une date + l'extension, résultat $filename :"jeanmiche_20220422.jpg"
+            $filename = $filenameWithExt . '_' . time() . '.' . $extension;
+            // On enregistre le fichier à la racine /storage/app/public/uploads, ici la méthode storeAs défini déjà le chemin/storage/app
+            $request->file('img_profil')->storeAs('public/uploads', $filename);
+        } else {
+            $filename = Null;
+        }
+
+        $img_profil = User::create(array_merge($request->all(), ['img_profil' => $filename]));
+
+
+        return response()->json([
+            'status' => 'Success',
+            'data' => $img_profil,
+        ]);
+
         $user = $this->user::create([
             'pseudo_user' => $request['pseudo_user'],
             'email_account' => $request['email_account'],
             'password' => bcrypt($request['password']),
-            'is_admin' => $request['is_admin'],
+            'role_id' => $request['role_id'],
             'email' => $request['email'],
-            'tel'=>$request['tel'],
-            'description'=>$request['description'],
-            'slug'=>$request['slug'],
-            'style'=>$request['style'],
-            'instagram'=>$request['instagram'],
-            'img_profil'=>$request['img_profil'],
-            'status_profil'=>$request['status_profil'],
-            'city'=>$request['city'],
-            'departement'=>$request['departement'],
-            'coordonnes'=>$request['coordonnes'],
-            'tattooshop'=>$request['tattooshop'],
-            'title'=>$request['title'],
-            'meta_description'=>$request['meta_description'],
-            'tattooshop_id'=>$request['tattooshop_id'],
+            'tel' => $request['tel'],
+            'description' => $request['description'],
+            'slug' => $request['slug'],
+            'style' => $request['style'],
+            'instagram' => $request['instagram'],
+            'img_profil' => $request['img_profil'],
+            'status_profil' => $request['status_profil'],
+            'city' => $request['city'],
+            'departement' => $request['departement'],
+            'coordonnes' => $request['coordonnes'],
+            'tattooshop' => $request['tattooshop'],
+            'title' => $request['title'],
+            'meta_description' => $request['meta_description'],
+            'tattooshop_id' => $request['tattooshop_id'],
         ]);
         $token = auth()->login($user);
         return response()->json([

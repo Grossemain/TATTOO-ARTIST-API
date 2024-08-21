@@ -42,7 +42,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'is_admin' => 'nullable',
             'email_account' => 'required',
             'password' => 'required',
             'pseudo_user' => 'required|max:50',

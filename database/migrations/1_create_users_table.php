@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->boolean('is_admin');
+            $table->unsignedBigInteger('role_id')->default(1); 
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('email_account')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
