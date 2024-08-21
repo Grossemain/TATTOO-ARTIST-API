@@ -34,7 +34,7 @@ Route::get('/users{user}', [AuthController::class, 'show'])->name('users.show');
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
+// Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 //Routes vers Article

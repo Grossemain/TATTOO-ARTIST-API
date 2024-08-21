@@ -16,14 +16,46 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|min:2|max:255',
-            'email' => 'required|email|unique:users',
+            'pseudo_user' => 'required|string|min:2|max:255',
+            'email_account' => 'required|email_account|unique:users',
             'password' => 'required|string|min:6|max:255',
+            'is_admin' => 'nullable',
+            'email' => 'nullable',
+            'tel'=>'nullable',
+            'description'=>'nullable',
+            'slug'=>'nullable',
+            'style'=>'nullable',
+            'instagram'=>'nullable',
+            'img_profil'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'status_profil'=>'nullable',
+            'city'=>'nullable',
+            'departement'=>'nullable',
+            'coordonnes'=>'nullable',
+            'tattooshop'=>'nullable',
+            'title'=>'nullable',
+            'meta_description'=>'nullable',
+            'tattooshop_id'=>'nullable',
         ]);
         $user = $this->user::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
+            'pseudo_user' => $request['pseudo_user'],
+            'email_account' => $request['email_account'],
             'password' => bcrypt($request['password']),
+            'is_admin' => $request['is_admin'],
+            'email' => $request['email'],
+            'tel'=>$request['tel'],
+            'description'=>$request['description'],
+            'slug'=>$request['slug'],
+            'style'=>$request['style'],
+            'instagram'=>$request['instagram'],
+            'img_profil'=>$request['img_profil'],
+            'status_profil'=>$request['status_profil'],
+            'city'=>$request['city'],
+            'departement'=>$request['departement'],
+            'coordonnes'=>$request['coordonnes'],
+            'tattooshop'=>$request['tattooshop'],
+            'title'=>$request['title'],
+            'meta_description'=>$request['meta_description'],
+            'tattooshop_id'=>$request['tattooshop_id'],
         ]);
         $token = auth()->login($user);
         return response()->json([
@@ -45,11 +77,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => 'required|string',
+            'email_account' => 'required|string',
             'password' => 'required|string',
         ]);
         $token = auth()->attempt([
-            'email' => $request->email,
+            'email_account' => $request->email_account,
             'password' => $request->password,
         ]);
         if ($token) {
