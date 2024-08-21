@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('art_styles', function (Blueprint $table) {
-            $table->id();
+        Schema::create('pictures', function (Blueprint $table) {
+            $table->increments('picture_id');
+            $table->string('image', 100);
+            $table->text('alt');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('art_styles');
+        Schema::dropIfExists('pictures');
     }
 };

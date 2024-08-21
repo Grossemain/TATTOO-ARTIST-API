@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users_art_styles', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('style_id');
+            $table->primary(['user_id', 'style_id']);
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->foreign('style_id')->references('style_id')->on('artstyles')->onDelete('cascade');
             $table->timestamps();
         });
     }
