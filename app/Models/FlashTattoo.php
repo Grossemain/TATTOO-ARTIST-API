@@ -14,7 +14,13 @@ class FlashTattoo extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'flashtattoo_id', 'title', 'h1_title', 'content', 'img_flashtattoo', 'disponibility', 'user_id'
+        'flashtattoo_id', 
+        'title', 
+        'h1_title', 
+        'content', 
+        'img_flashtattoo', 
+        'disponibility', 
+        'user_id'
     ];
 
     public function user()

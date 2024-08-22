@@ -48,18 +48,18 @@ Route::delete('/articles/{articles}', [ArticleController::class, 'destroy'])->na
 //Routes vers ArtStyle
 
 Route::get('/artstyles', [ArtStyleController::class, 'index'])->name('artstyles.index');
-Route::get('/artstyles/{artstyle}', [ArtStyleController::class, 'show'])->name('artstyles.show');
-Route::put('/artstyles/{artstyle}', [ArtStyleController::class, 'update'])->name('artstyles.update');
+Route::get('/artstyles/{artStyle}', [ArtStyleController::class, 'show'])->name('artstyles.show');
+Route::put('/artstyles/{artStyle}', [ArtStyleController::class, 'update'])->name('artstyles.update');
 Route::post('/artstyles', [ArtStyleController::class, 'store'])->name('artstyles.store');
-Route::delete('/artstyles/{artstyle}', [ArtStyleController::class, 'destroy'])->name('artstyles.destroy');
+Route::delete('/artstyles/{artStyle}', [ArtStyleController::class, 'destroy'])->name('artstyles.destroy');
 
 //Routes vers FlashTattoo
 
 Route::get('/flashtattoos', [FlashTattooController::class, 'index'])->name('flashtattoos.index');
-Route::get('/flashtattoos/{flashtattoo}', [FlashTattooController::class, 'show'])->name('flashtattoos.show');
-Route::put('/flashtattoos/{flashtattoo}', [FlashTattooController::class, 'update'])->name('flashtattoos.update');
+Route::get('/flashtattoos/{flashTattoo}', [FlashTattooController::class, 'show'])->name('flashtattoos.show');
+Route::put('/flashtattoos/{flashTattoo}', [FlashTattooController::class, 'update'])->name('flashtattoos.update');
 Route::post('/flashtattoos', [FlashTattooController::class, 'store'])->name('flashtattoos.store');
-Route::delete('/flashtattoos/{flashtattoo}', [FlashTattooController::class, 'destroy'])->name('flashtattoos.destroy');
+Route::delete('/flashtattoos/{flashTattoo}', [FlashTattooController::class, 'destroy'])->name('flashtattoos.destroy');
 
 //Routes vers Picture
 
@@ -72,18 +72,18 @@ Route::delete('/pictures/{picture}', [PictureController::class, 'destroy'])->nam
 //Routes vers PictureArtStyle
 
 Route::get('/pictureartstyles', [PictureArtStyleController::class, 'index'])->name('pictureartstyles.index');
-Route::get('/pictureartstyles/{pictureartstyle}', [PictureArtStyleController::class, 'show'])->name('pictureartstyles.show');
-Route::put('/pictureartstyles/{pictureartstyle}', [PictureArtStyleController::class, 'update'])->name('pictureartstyles.update');
+Route::get('/pictureartstyles/{pictureArtStyle}', [PictureArtStyleController::class, 'show'])->name('pictureartstyles.show');
+Route::put('/pictureartstyles/{pictureArtStyle}', [PictureArtStyleController::class, 'update'])->name('pictureartstyles.update');
 Route::post('/pictureartstyles', [PictureArtStyleController::class, 'store'])->name('pictureartstyles.store');
-Route::delete('/pictureartstyles/{pictureartstyle}', [PictureArtStyleController::class, 'destroy'])->name('pictureartstyles.destroy');
+Route::delete('/pictureartstyles/{pictureArtStyle}', [PictureArtStyleController::class, 'destroy'])->name('pictureartstyles.destroy');
 
 //Routes vers UserStyle
 
 Route::get('/userstyles', [UserArtStyleController::class, 'index'])->name('userstyles.index');
-Route::get('/userstyles/{userstyle}', [UserArtStyleController::class, 'show'])->name('userstyles.show');
-Route::put('/userstyles/{userstyle}', [UserArtStyleController::class, 'update'])->name('userstyles.update');
+Route::get('/userstyles/{userStyle}', [UserArtStyleController::class, 'show'])->name('userstyles.show');
+Route::put('/userstyles/{userStyle}', [UserArtStyleController::class, 'update'])->name('userstyles.update');
 Route::post('/userstyles', [UserArtStyleController::class, 'store'])->name('userstyles.store');
-Route::delete('/userstyles/{userstyle}', [UserArtStyleController::class, 'destroy'])->name('userstyles.destroy');
+Route::delete('/userstyles/{userStyle}', [UserArtStyleController::class, 'destroy'])->name('userstyles.destroy');
 
 //Routes vers TattooShop
 

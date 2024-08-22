@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('flash_tattoos', function (Blueprint $table) {
-            $table->string('flashtattoo_id', 50)->primary();
+            $table->increments('flashtattoo_id');
             $table->string('title', 100);
             $table->string('h1_title', 100);
             $table->text('content');
             $table->string('img_flashtattoo', 50);
             $table->boolean('disponibility');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
