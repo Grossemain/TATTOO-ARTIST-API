@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->increments('user_id');
             $table->unsignedBigInteger('role_id')->default(1); 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->string('email_account')->unique();

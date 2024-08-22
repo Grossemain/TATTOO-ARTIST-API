@@ -19,14 +19,14 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'pseudo_user' => 'admin',
-                'role_id' => '1',
+                'role_id' => '2',
                 'email_account' => 'admin@example.com',
                 'password' => Hash::make('azertyuiop'),
                 'email_verified_at' => now(),
             ],
             [
                 'pseudo_user' => 'user',
-                'role_id' => '2',
+                'role_id' => '1',
                 'email_account' => 'user@example.com',
                 'password' => Hash::make('azertyuiop'),
                 'email_verified_at' => now(),
