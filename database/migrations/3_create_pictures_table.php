@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('picture_id');
-            $table->string('image', 100);
+            $table->string('image', 255);
             $table->text('alt');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('slug', 50)->nullable();
             $table->string('style', 255)->nullable();
             $table->string('instagram', 50)->nullable();
-            $table->string('img_profil', 50)->nullable();
+            $table->string('img_profil', 255)->nullable();
             $table->string('status_profil', 50)->nullable();
             $table->string('city', 50)->nullable();
             $table->string('departement', 50)->nullable();

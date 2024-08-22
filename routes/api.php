@@ -88,7 +88,7 @@ Route::delete('/userstyles/{userStyle}', [UserArtStyleController::class, 'destro
 //Routes vers TattooShop
 
 Route::get('/tattooshops', [TattooShopController::class, 'index'])->name('tattooshops.index');
-Route::get('/tattooshops/{tattooshop}', [TattooShopController::class, 'show'])->name('tattooshops.show');
-Route::put('/tattooshops/{tattooshop}', [TattooShopController::class, 'update'])->name('tattooshops.update');
+Route::get('/tattooshops/{tattooShop}', [TattooShopController::class, 'show'])->name('tattooshops.show');
+Route::put('/tattooshops/{tattooShop}', [TattooShopController::class, 'update'])->name('tattooshops.update');
 Route::post('/tattooshops', [TattooShopController::class, 'store'])->name('tattooshops.store');
-Route::delete('/tattooshops/{tattooshop}', [TattooShopController::class, 'destroy'])->name('tattooshops.destroy');
+Route::delete('/tattooshops/{tattooShop}', [TattooShopController::class, 'destroy'])->name('tattooshops.destroy');

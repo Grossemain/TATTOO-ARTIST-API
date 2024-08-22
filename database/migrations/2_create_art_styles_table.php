@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('style_id');
             $table->string('name', 50);
             $table->text('description');
-            $table->string('img_style', 100);
+            $table->string('img_style', 255);
             $table->timestamps();
         });
     }
