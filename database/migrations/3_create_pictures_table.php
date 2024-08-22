@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('picture_id');
             $table->string('image', 100);
             $table->text('alt');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

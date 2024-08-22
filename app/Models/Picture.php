@@ -12,7 +12,10 @@ class Picture extends Model
     protected $primaryKey = 'picture_id';
 
     protected $fillable = [
-        'picture_id', 'image', 'alt', 'user_id'
+        'picture_id', 
+        'image', 
+        'alt', 
+        'user_id'
     ];
 
     public function user()
@@ -22,6 +25,6 @@ class Picture extends Model
 
     public function artstyles()
     {
-        return $this->belongsToMany(Artstyle::class, 'have', 'picture_id', 'style_id');
+        return $this->belongsToMany(Artstyle::class, 'pictures_art_styles', 'picture_id', 'style_id');
     }
 }

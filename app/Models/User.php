@@ -74,6 +74,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function artstyles()
     {
-        return $this->belongsToMany(Artstyle::class, 'concern', 'user_id', 'style_id');
+        return $this->belongsToMany(Artstyle::class, 'users_art_styles', 'user_id', 'style_id');
     }
 }

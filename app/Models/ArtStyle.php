@@ -20,11 +20,11 @@ class ArtStyle extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'concern', 'style_id', 'user_id');
+        return $this->belongsToMany(User::class, 'users_art_styles', 'style_id', 'user_id');
     }
 
     public function pictures()
     {
-        return $this->belongsToMany(Picture::class, 'have', 'style_id', 'picture_id');
+        return $this->belongsToMany(Picture::class, 'pictures_art_styles', 'style_id', 'picture_id');
     }
 }
