@@ -23,8 +23,4 @@ class ArtStyle extends Model
         return $this->belongsToMany(User::class, 'users_art_styles', 'style_id', 'user_id');
     }
 
-    public function pictures()
-    {
-        return $this->belongsToMany(Picture::class, 'pictures_art_styles', 'style_id', 'picture_id');
-    }
 }

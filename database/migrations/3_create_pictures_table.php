@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->increments('picture_id');
+            $table->string('picture_name', 50);
             $table->string('image', 255);
             $table->text('alt');
             $table->unsignedInteger('user_id')->nullable();

@@ -23,6 +23,7 @@ class PictureController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'picture_name'=> 'required|max:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'alt' => 'required|max:100',
             'user_id' => 'nullable|max:50'
@@ -44,7 +45,10 @@ class PictureController extends Controller
         }
 
         $picture = Picture::create(array_merge($request->all(), ['image' => $filename]));
-
+        // $artStyle = $request->artStyle;
+        // for ($i = 0; $i < count($artStyle); $i++) {
+        //     $picture->artstyles()->attach($artStyle[$i]);
+        // }
 
         return response()->json([
             'status' => 'Success',
@@ -66,11 +70,12 @@ class PictureController extends Controller
     public function update(Request $request, Picture $picture)
     {
         $request->validate([
+            'picture_name'=> 'required|max:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'alt' => 'required|max:100',
             'user_id' => 'nullable|max:50'
         ]);
-        
+
         //validate du changement de l'update de l'image
         $filename = "";
         if ($request->hasFile('image')) {
@@ -92,8 +97,6 @@ class PictureController extends Controller
         return response()->json([
             'status' => 'Mise à jour avec succès'
         ]);
-
-    
     }
 
     /**
