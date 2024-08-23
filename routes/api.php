@@ -40,10 +40,10 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 //Routes vers Article
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/articles/{articles}', [ArticleController::class, 'show'])->name('articles.show');
-Route::put('/articles/{articles}', [ArticleController::class, 'update'])->name('articles.update');
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::put('/articles/{article}', [ArticleController::class, 'update'])->name('articles.update');
 Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
-Route::delete('/articles/{articles}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 
 //Routes vers ArtStyle
 
