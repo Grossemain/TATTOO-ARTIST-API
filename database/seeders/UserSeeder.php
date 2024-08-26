@@ -20,14 +20,14 @@ class UserSeeder extends Seeder
             [
                 'pseudo_user' => 'admin',
                 'role_id' => '2',
-                'email_account' => 'admin@example.com',
+                'email' => 'admin@example.com',
                 'password' => Hash::make('azertyuiop'),
                 'email_verified_at' => now(),
             ],
             [
                 'pseudo_user' => 'user',
                 'role_id' => '1',
-                'email_account' => 'user@example.com',
+                'email' => 'user@example.com',
                 'password' => Hash::make('azertyuiop'),
                 'email_verified_at' => now(),
             ],

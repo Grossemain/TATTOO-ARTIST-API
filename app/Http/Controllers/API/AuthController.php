@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -13,14 +14,15 @@ class AuthController extends Controller
     {
         $this->user = $user;
     }
+
     public function register(Request $request)
     {
         $request->validate([
             'pseudo_user' => 'required|string|min:2|max:255',
-            'email_account' => 'required|email_account|unique:users',
+            'email' => 'nullable|email|unique:users',
             'password' => 'required|string|min:6|max:255',
             'role_id' => 'nullable',
-            'email' => 'nullable',
+            'email_contact' => 'nullable',
             'tel' => 'nullable',
             'description' => 'nullable',
             'slug' => 'nullable',
@@ -51,20 +53,12 @@ class AuthController extends Controller
             $filename = Null;
         }
 
-        $img_profil = User::create(array_merge($request->all(), ['img_profil' => $filename]));
-
-
-        return response()->json([
-            'status' => 'Success',
-            'data' => $img_profil,
-        ]);
-
         $user = $this->user::create([
             'pseudo_user' => $request['pseudo_user'],
-            'email_account' => $request['email_account'],
-            'password' => bcrypt($request['password']),
-            'role_id' => $request['role_id'],
             'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'role_id' => 1,
+            'email_contact' => $request['email_contact'],
             'tel' => $request['tel'],
             'description' => $request['description'],
             'slug' => $request['slug'],
@@ -79,7 +73,9 @@ class AuthController extends Controller
             'title' => $request['title'],
             'meta_description' => $request['meta_description'],
             'tattooshop_id' => $request['tattooshop_id'],
+            'img_profil' => $filename 
         ]);
+
         $token = auth()->login($user);
         return response()->json([
             'meta' => [
@@ -97,14 +93,15 @@ class AuthController extends Controller
             ],
         ]);
     }
+    
     public function login(Request $request)
     {
         $request->validate([
-            'email_account' => 'required|string',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
         $token = auth()->attempt([
-            'email_account' => $request->email_account,
+            'email' => $request->email,
             'password' => $request->password,
         ]);
         if ($token) {

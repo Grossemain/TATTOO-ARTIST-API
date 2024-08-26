@@ -15,11 +15,11 @@ return new class extends Migration
             $table->increments('user_id');
             $table->unsignedBigInteger('role_id')->default(1); 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->string('email_account')->unique();
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('pseudo_user', 50);
-            $table->string('email', 50)->nullable();
+            $table->string('email_contact', 50)->nullable();
             $table->string('tel', 15)->nullable();
             $table->text('description')->nullable();
             $table->string('slug', 50)->nullable();
@@ -40,7 +40,7 @@ return new class extends Migration
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email_account')->primary();
+            $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });

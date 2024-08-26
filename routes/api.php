@@ -69,22 +69,6 @@ Route::put('/pictures/{picture}', [PictureController::class, 'update'])->name('p
 Route::post('/pictures', [PictureController::class, 'store'])->name('pictures.store');
 Route::delete('/pictures/{picture}', [PictureController::class, 'destroy'])->name('pictures.destroy');
 
-//Routes vers PictureArtStyle
-
-Route::get('/pictureartstyles', [PictureArtStyleController::class, 'index'])->name('pictureartstyles.index');
-Route::get('/pictureartstyles/{pictureArtStyle}', [PictureArtStyleController::class, 'show'])->name('pictureartstyles.show');
-Route::put('/pictureartstyles/{pictureArtStyle}', [PictureArtStyleController::class, 'update'])->name('pictureartstyles.update');
-Route::post('/pictureartstyles', [PictureArtStyleController::class, 'store'])->name('pictureartstyles.store');
-Route::delete('/pictureartstyles/{pictureArtStyle}', [PictureArtStyleController::class, 'destroy'])->name('pictureartstyles.destroy');
-
-//Routes vers UserStyle
-
-Route::get('/userstyles', [UserArtStyleController::class, 'index'])->name('userstyles.index');
-Route::get('/userstyles/{userStyle}', [UserArtStyleController::class, 'show'])->name('userstyles.show');
-Route::put('/userstyles/{userStyle}', [UserArtStyleController::class, 'update'])->name('userstyles.update');
-Route::post('/userstyles', [UserArtStyleController::class, 'store'])->name('userstyles.store');
-Route::delete('/userstyles/{userStyle}', [UserArtStyleController::class, 'destroy'])->name('userstyles.destroy');
-
 //Routes vers TattooShop
 
 Route::get('/tattooshops', [TattooShopController::class, 'index'])->name('tattooshops.index');
@@ -92,3 +76,11 @@ Route::get('/tattooshops/{tattooShop}', [TattooShopController::class, 'show'])->
 Route::put('/tattooshops/{tattooShop}', [TattooShopController::class, 'update'])->name('tattooshops.update');
 Route::post('/tattooshops', [TattooShopController::class, 'store'])->name('tattooshops.store');
 Route::delete('/tattooshops/{tattooShop}', [TattooShopController::class, 'destroy'])->name('tattooshops.destroy');
+
+// //Routes vers UserStyle
+
+// Route::get('/userstyles', [UserArtStyleController::class, 'index'])->name('userstyles.index');
+// Route::get('/userstyles/{userStyle}', [UserArtStyleController::class, 'show'])->name('userstyles.show');
+// Route::put('/userstyles/{userStyle}', [UserArtStyleController::class, 'update'])->name('userstyles.update');
+// Route::post('/userstyles', [UserArtStyleController::class, 'store'])->name('userstyles.store');
+// Route::delete('/userstyles/{userStyle}', [UserArtStyleController::class, 'destroy'])->name('userstyles.destroy');
