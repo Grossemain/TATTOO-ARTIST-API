@@ -18,25 +18,19 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'pseudo_user' => 'required|string|min:2|max:255',
-            'email' => 'nullable|email|unique:users',
-            'password' => 'required|string|min:6|max:255',
-            'role_id' => 'nullable',
-            'email_contact' => 'nullable',
-            'tel' => 'nullable',
-            'description' => 'nullable',
-            'slug' => 'nullable',
-            'style' => 'nullable',
-            'instagram' => 'nullable',
-            'img_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'status_profil' => 'nullable',
-            'city' => 'nullable',
-            'departement' => 'nullable',
-            'coordonnes' => 'nullable',
-            'tattooshop' => 'nullable',
-            'title' => 'nullable',
-            'meta_description' => 'nullable',
-            'tattooshop_id' => 'nullable',
+            // 'pseudo_user' => 'required|string|min:2|max:255',
+            // 'email' => 'nullable|email|unique:users',
+            // 'password' => 'required|string|min:6|max:255',
+            // 'role_id' => 'nullable',
+            // 'email_contact' => 'nullable',
+            // 'tel' => 'nullable',
+            // 'description' => 'nullable',
+            // 'instagram' => 'nullable',
+            // // 'img_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'city' => 'nullable',
+            // 'departement' => 'nullable',
+            // 'coordonnes' => 'nullable',
+
         ]);
         $filename = "";
         if ($request->hasFile('img_profil')) {
@@ -61,20 +55,20 @@ class AuthController extends Controller
             'email_contact' => $request['email_contact'],
             'tel' => $request['tel'],
             'description' => $request['description'],
-            'slug' => $request['slug'],
-            'style' => $request['style'],
             'instagram' => $request['instagram'],
             'img_profil' => $request['img_profil'],
-            'status_profil' => $request['status_profil'],
             'city' => $request['city'],
             'departement' => $request['departement'],
             'coordonnes' => $request['coordonnes'],
             'tattooshop' => $request['tattooshop'],
-            'title' => $request['title'],
-            'meta_description' => $request['meta_description'],
             'tattooshop_id' => $request['tattooshop_id'],
             'img_profil' => $filename 
         ]);
+
+        $artstyles = $request->artstyle_id;
+        for ($i = 0; $i < count($artstyles); $i++) {
+            $user->artstyles()->attach($artstyles[$i]);
+        }
 
         $token = auth()->login($user);
         return response()->json([

@@ -12,7 +12,7 @@ class ArtStyle extends Model
     protected $primaryKey = 'style_id';
 
     protected $fillable = [
-        'style_id', 
+        'artstyle_id', 
         'name', 
         'description', 
         'img_style'
@@ -20,7 +20,7 @@ class ArtStyle extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'users_art_styles', 'style_id', 'user_id');
+        return $this->belongsToMany(User::class, 'users_art_styles', 'artstyle_id', 'user_id');
     }
 
 }

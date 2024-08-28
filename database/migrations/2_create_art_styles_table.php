@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('art_styles', function (Blueprint $table) {
-            $table->increments('style_id');
+            $table->increments('artstyle_id');
             $table->string('name', 50);
             $table->text('description');
             $table->string('img_style', 255);

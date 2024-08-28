@@ -23,17 +23,12 @@ class User extends Authenticatable implements JWTSubject
         'email_contact',
         'tel',
         'description',
-        'slug',
-        'style',
         'instagram',
         'img_profil',
-        'status_profil',
         'city',
         'departement',
         'coordonnes',
         'tattooshop',
-        'title',
-        'meta_description',
         'tattooshop_id'
     ];
 
@@ -74,6 +69,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function artstyles()
     {
-        return $this->belongsToMany(Artstyle::class, 'users_art_styles', 'user_id', 'style_id');
+        return $this->belongsToMany(Artstyle::class, 'users_art_styles', 'user_id', 'artstyle_id');
     }
 }

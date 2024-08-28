@@ -49,17 +49,12 @@ class UserController extends Controller
             'email' => 'required',
             'tel'=>'nullable',
             'description'=>'nullable',
-            'slug'=>'nullable',
-            'style'=>'nullable',
             'instagram'=>'nullable',
             'img_profil'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'status_profil'=>'nullable',
             'city'=>'nullable',
             'departement'=>'nullable',
             'coordonnes'=>'nullable',
             'tattooshop'=>'nullable',
-            'title'=>'nullable',
-            'meta_description'=>'nullable',
             'tattooshop_id'=>'nullable',
         ]);
 

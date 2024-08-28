@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('users_art_styles', function (Blueprint $table) {
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('style_id');
-            $table->primary(['user_id', 'style_id']);
+            $table->unsignedInteger('artstyle_id');
+            $table->primary(['user_id', 'artstyle_id']);
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('style_id')->references('style_id')->on('artstyles')->onDelete('cascade');
+            $table->foreign('artstyle_id')->references('artstyle_id')->on('artstyles')->onDelete('cascade');
             $table->timestamps();
         });
     }
