@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class UserController extends Controller
 {
@@ -38,6 +40,23 @@ class UserController extends Controller
     {
         // On retourne les informations de l'utilisateur en JSON
         return response()->json($user);
+    }
+
+    public function search(Request $request)
+    {
+
+        $users = User::query()
+            ->when(
+                $request->search,
+                function (Builder $builder) use ($request) {
+                    $builder->where('pseudo_user', 'like', "%{$request->search}%")
+                        ->orWhere('city', 'like', "%{$request->search}%")
+                        ->orWhere('departement', 'like', "%{$request->search}%")
+                        ->orWhere('description', 'like', "%{$request->search}%");
+                }
+            )->get();
+
+        return response()->json($users);
     }
 
     public function update(Request $request, User $user)
