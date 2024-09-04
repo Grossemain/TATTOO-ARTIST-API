@@ -9,7 +9,7 @@ class ArtStyle extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'style_id';
+    protected $primaryKey = 'artstyle_id';
 
     protected $fillable = [
         'artstyle_id', 
