@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\TattooShop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TattooShopController extends Controller
 {
@@ -47,7 +48,8 @@ class TattooShopController extends Controller
             $filename = Null;
         }
 
-        $tattooshop = TattooShop::create(array_merge($request->all(), ['img_tattooshop' => $filename]));
+//en faisant Auth::user() on récupère les information de l'utilisateur connécté
+$tattooshop = TattooShop::create(array_merge($request->all(), ['img_tattooshop' => $filename,'user_id'=>Auth::user()->user_id]));
 
 
         return response()->json([

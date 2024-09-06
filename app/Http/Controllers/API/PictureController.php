@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Picture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PictureController extends Controller
 {
@@ -26,7 +27,7 @@ class PictureController extends Controller
             'picture_name'=> 'required|max:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'alt' => 'required|max:100',
-            'user_id' => 'nullable|max:50'
+
         ]);
 
         $filename = "";
@@ -43,8 +44,9 @@ class PictureController extends Controller
         } else {
             $filename = Null;
         }
+//en faisant Auth::user() on récupère les information de l'utilisateur connécté
 
-        $picture = Picture::create(array_merge($request->all(), ['image' => $filename]));
+        $picture = Picture::create(array_merge($request->all(), ['image' => $filename,'user_id'=>Auth::user()->user_id]));
         // $artStyle = $request->artStyle;
         // for ($i = 0; $i < count($artStyle); $i++) {
         //     $picture->artstyles()->attach($artStyle[$i]);
@@ -69,9 +71,9 @@ class PictureController extends Controller
      */
     public function update(Request $request, Picture $picture)
     {
+
         $request->validate([
             'picture_name'=> 'required|max:50',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'alt' => 'required|max:100',
             'user_id' => 'nullable|max:50'
         ]);
@@ -89,10 +91,10 @@ class PictureController extends Controller
             // On enregistre le fichier à la racine /storage/app/public/uploads, ici la méthode storeAs défini déjà le chemin/storage/app
             $request->file('image')->storeAs('public/uploads', $filename);
         } else {
-            $filename = Null;
+            $filename = $picture->image;
         }
 
-        $picture->update(array_merge($request->all(), ['image' => $filename]));
+    $picture->update(array_merge($request->all(), ['image' => $filename]));
 
         return response()->json([
             'status' => 'Mise à jour avec succès'

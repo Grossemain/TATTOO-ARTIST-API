@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\FlashTattoo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FlashTattooController extends Controller
 {
@@ -28,7 +29,7 @@ class FlashTattooController extends Controller
             'content' => 'nullable',
             'img_flashtattoo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'disponibility'=>'nullable',
-            'user_id' => 'nullable|max:50'
+
         ]);
 
         $filename = "";
@@ -46,8 +47,8 @@ class FlashTattooController extends Controller
             $filename = Null;
         }
 
-        $flashtattoo = FlashTattoo::create(array_merge($request->all(), ['img_flashtattoo' => $filename]));
-
+//en faisant Auth::user() on récupère les information de l'utilisateur connécté
+$flashtattoo = FlashTattoo::create(array_merge($request->all(), ['img_flashtattoo' => $filename,'user_id'=>Auth::user()->user_id]));
 
         return response()->json([
             'status' => 'Success',

@@ -25,7 +25,7 @@ Route::post('/users/search', [UserController::class, 'search'])->name('users.sea
 
 //Seulement accessible via le JWT
 Route::middleware('auth:api')->group(function() {
-Route::get('/currentuser', [UserController::class, 'currentUser']);
+Route::post('/currentuser', [UserController::class, 'currentUser']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/users', [AuthController::class, 'index'])->name('users.index');
 Route::get('/users{user}', [AuthController::class, 'show'])->name('users.show');
