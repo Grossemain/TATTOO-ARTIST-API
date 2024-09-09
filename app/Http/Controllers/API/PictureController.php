@@ -14,7 +14,9 @@ class PictureController extends Controller
      */
     public function index()
     {
-        $pictures = Picture::all();
+    //on va récupérer les données de users pour les afficher en objet json avec les données de picture
+        $pictures = Picture::with(['user'])->get();
+
         return response()->json($pictures);
     }
 
@@ -63,6 +65,8 @@ class PictureController extends Controller
      */
     public function show(Picture $picture)
     {
+        //on va telecharger les données de users pour les afficher en objet json avec les données de picture
+        $picture->load('user');
         return response()->json($picture);
     }
 
