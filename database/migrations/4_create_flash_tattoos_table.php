@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('h1_title', 100);
             $table->text('content');
             $table->string('img_flashtattoo', 255);
-            $table->boolean('disponibility');
+            $table->boolean('disponibility')->default(false);
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();

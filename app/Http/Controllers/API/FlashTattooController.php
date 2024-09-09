@@ -14,8 +14,8 @@ class FlashTattooController extends Controller
      */
     public function index()
     {
-        $flashtattoos = FlashTattoo::all();
-        return response()->json($flashtattoos);
+        $flashTattoos = FlashTattoo::all();
+        return response()->json($flashTattoos);
     }
 
     /**
@@ -28,7 +28,7 @@ class FlashTattooController extends Controller
             'h1_title' => 'nullable|max:100',
             'content' => 'nullable',
             'img_flashtattoo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'disponibility'=>'nullable',
+
 
         ]);
 
@@ -48,11 +48,11 @@ class FlashTattooController extends Controller
         }
 
 //en faisant Auth::user() on récupère les information de l'utilisateur connécté
-$flashtattoo = FlashTattoo::create(array_merge($request->all(), ['img_flashtattoo' => $filename,'user_id'=>Auth::user()->user_id]));
+$flashTattoo = FlashTattoo::create(array_merge($request->all(), ['img_flashtattoo' => $filename,'user_id'=>Auth::user()->user_id]));
 
         return response()->json([
             'status' => 'Success',
-            'data' => $flashtattoo,
+            'data' => $flashTattoo,
         ]);
     }
 
@@ -74,8 +74,7 @@ $flashtattoo = FlashTattoo::create(array_merge($request->all(), ['img_flashtatto
             'h1_title' => 'nullable|max:100',
             'content' => 'nullable',
             'img_flashtattoo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'disponibility'=>'nullable',
-            'user_id' => 'nullable|max:50'
+
         ]);
 
         //validate du changement de l'update de l'image
