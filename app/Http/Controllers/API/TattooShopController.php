@@ -28,7 +28,6 @@ class TattooShopController extends Controller
             'adresse' => 'nullable|max:50',
             'city' => 'nullable',
             'departement'=>'nullable',
-            'title'=>'nullable',
             'meta_description'=>'nullable',
             'img_tattooshop' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
@@ -76,7 +75,6 @@ $tattooshop = TattooShop::create(array_merge($request->all(), ['img_tattooshop' 
             'adresse' => 'nullable|max:50',
             'city' => 'nullable',
             'departement'=>'nullable',
-            'title'=>'nullable',
             'meta_description'=>'nullable',
             'img_tattooshop' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);

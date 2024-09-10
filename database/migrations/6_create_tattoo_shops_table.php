@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('tattoo_shops', function (Blueprint $table) {
             $table->increments('tattooshop_id');
             $table->string('name', 50);
-            $table->text('adresse', 50);
-            $table->string('city', 50);
-            $table->string('departement', 50);
-            $table->string('title', 50);
-            $table->text('meta_description');
+            $table->text('adresse', 50)->nullable();
+            $table->string('city', 50)->nullable();
+            $table->string('departement', 50)->nullable();
+            $table->string('title', 50)->nullable();
+            $table->text('meta_description')->nullable();
             $table->string('img_tattooshop', 255);
             $table->timestamps();
         });
