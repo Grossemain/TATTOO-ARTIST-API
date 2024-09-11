@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -13,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        // On récupère tous les Articles
+        //on va récupérer toutes les données de article
         $articles = Article::all();
         // On retourne les informations des styles en JSON
         return response()->json($articles);
@@ -28,7 +29,6 @@ class ArticleController extends Controller
             'title' => 'required|max:100',
             'content' => 'required',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'tattooshop_id' => 'nullable',
         ]);
 
         $filename = "";
@@ -45,8 +45,8 @@ class ArticleController extends Controller
         } else {
             $filename = Null;
         }
-
-        $article = Article::create(array_merge($request->all(), ['img' => $filename]));
+// dd(Auth::user());
+        $article = Article::create(array_merge($request->all(), ['img' => $filename,'tattooshop_id'=>Auth::user()->tattooshop_id]));
 
 
         return response()->json([
@@ -72,7 +72,7 @@ class ArticleController extends Controller
             'title' => 'required|max:100',
             'content' => 'required',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'tattooshop_id' => 'nullable',
+
         ]);
 
         //validate du changement de l'update de l'image

@@ -14,7 +14,7 @@ class FlashTattooController extends Controller
      */
     public function index()
     {
-        $flashTattoos = FlashTattoo::all();
+        $flashTattoos = FlashTattoo::with(['user'])->get();
         return response()->json($flashTattoos);
     }
 
