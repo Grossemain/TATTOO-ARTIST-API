@@ -26,10 +26,8 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title' => 'required|max:100',
-            'h1_title' => 'required|max:100',
             'content' => 'required',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'slug' => 'nullable',
             'tattooshop_id' => 'nullable',
         ]);
 
@@ -72,10 +70,8 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title' => 'required|max:100',
-            'h1_title' => 'required|max:100',
             'content' => 'required',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
-            'slug' => 'nullable',
             'tattooshop_id' => 'nullable',
         ]);
 

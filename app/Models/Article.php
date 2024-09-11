@@ -16,10 +16,8 @@ class Article extends Model
     protected $fillable = [
         'article_id', 
         'title', 
-        'h1_title', 
         'content', 
         'img', 
-        'slug', 
         'tattooshop_id'
     ];
 
