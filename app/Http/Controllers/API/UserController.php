@@ -17,6 +17,9 @@ class UserController extends Controller
     }
     public function currentUser()
     {
+        $user= auth()->user();
+        $user->load('artstyles');
+        // dd($user);
         return response()->json([
             'meta' => [
                 'code' => 200,
@@ -25,13 +28,14 @@ class UserController extends Controller
             ],
             'data' => [
                 'user' => auth()->user(),
+                'artstyle' => auth()->user()->artstyles(),
             ],
         ]);
     }
     public function index()
     {
         // On récupère tous les utilisateurs
-        $users = User::all();
+        $users = User::with(['tattooshop'])->get();
         // On retourne les informations des utilisateurs en JSON
         return response()->json($users);
     }
