@@ -15,23 +15,14 @@ class UserController extends Controller
     {
         $this->user = $user;
     }
+    
     public function currentUser()
     {
-        $user= auth()->user();
-        $user->load('artstyles');
-        // dd($user);
-        return response()->json([
-            'meta' => [
-                'code' => 200,
-                'status' => 'success',
-                'message' => 'User fetched successfully!',
-            ],
-            'data' => [
-                'user' => auth()->user(),
-                'artstyle' => auth()->user()->artstyles(),
-            ],
-        ]);
+        $user= auth()->user()->load('artstyles');
+ 
+        return response()->json($user);
     }
+
     public function index()
     {
         // On récupère tous les utilisateurs
@@ -67,13 +58,13 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
             'pseudo_user' => 'required|max:50',
             'email' => 'required',
             'tel'=>'nullable',
             'description'=>'nullable',
             'instagram'=>'nullable',
-            'img_profil'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            
             'city'=>'nullable',
             'departement'=>'nullable',
             'coordonnes'=>'nullable',
@@ -97,12 +88,28 @@ class UserController extends Controller
             $filename = Null;
         }
 
+        
+
         $user->update([
-            'pseudo_user' => $request->pseudo_user,
-            'email' => $request->email,
-            'password' => $request->password ? Hash::make($request->password) : $user->password,
-            'img_profil' => $filename
+            'pseudo_user' => $request['pseudo_user'],
+            'email' => $request['email'],
+            'email_contact' => $request['email_contact'],
+            'tel' => $request['tel'],
+            'description' => $request['description'],
+            'instagram' => $request['instagram'],
+            'img_profil' => $request['img_profil'],
+            'city' => $request['city'],
+            'departement' => $request['departement'],
+            'coordonnes' => $request['coordonnes'],
+            'tattooshop' => $request['tattooshop'],
+            'tattooshop_id' => $request['tattooshop_id'],
+            'img_profil' => $filename 
         ]);
+
+        $artstyles = $request->artstyle_id;
+        for ($i = 0; $i < count($artstyles); $i++) {
+            $user->artstyles()->attach($artstyles[$i]);
+        }
 
         return response()->json([
             'status' => 'Mise à jour avec succès'
