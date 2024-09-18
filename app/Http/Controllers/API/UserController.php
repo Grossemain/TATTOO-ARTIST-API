@@ -107,9 +107,8 @@ class UserController extends Controller
         ]);
 
         $artstyles = $request->artstyle_id;
-        for ($i = 0; $i < count($artstyles); $i++) {
-            $user->artstyles()->attach($artstyles[$i]);
-        }
+        $user->artstyles()->sync($artstyles);
+
 
         return response()->json([
             'status' => 'Mise à jour avec succès'
