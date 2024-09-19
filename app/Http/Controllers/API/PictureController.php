@@ -70,6 +70,13 @@ class PictureController extends Controller
         return response()->json($picture);
     }
 
+    public function pictureByUser($user)
+    {
+        //on gere les picture / user
+        $picture= Picture::where('user_id', $user)->get();
+        return response()->json($picture);
+    }
+
     /**
      * Update the specified resource in storage.
      */

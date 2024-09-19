@@ -62,6 +62,8 @@ Route::get('/flashtattoos/{flashTattoo}', [FlashTattooController::class, 'show']
 Route::put('/flashtattoos/{flashTattoo}', [FlashTattooController::class, 'update'])->name('flashtattoos.update');
 Route::post('/flashtattoos', [FlashTattooController::class, 'store'])->name('flashtattoos.store');
 Route::delete('/flashtattoos/{flashTattoo}', [FlashTattooController::class, 'destroy'])->name('flashtattoos.destroy');
+Route::get('/flashtattooByUser/{user}', [FlashTattooController::class, 'flashtattooByUser']);
+
 
 //Routes vers Picture
 
@@ -70,6 +72,7 @@ Route::get('/pictures/{picture}', [PictureController::class, 'show'])->name('pic
 Route::put('/pictures/{picture}', [PictureController::class, 'update'])->name('pictures.update');
 Route::post('/pictures', [PictureController::class, 'store'])->name('pictures.store');
 Route::delete('/pictures/{picture}', [PictureController::class, 'destroy'])->name('pictures.destroy');
+Route::get('/pictureByUser/{user}', [PictureController::class, 'pictureByUser']);
 
 //Routes vers TattooShop
 

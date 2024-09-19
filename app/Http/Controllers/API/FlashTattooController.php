@@ -64,6 +64,13 @@ $flashTattoo = FlashTattoo::create(array_merge($request->all(), ['img_flashtatto
         return response()->json($flashTattoo);
     }
 
+    public function flashtattooByUser($user)
+    {
+        //on gere les flashtattoo / user
+        $flashTattoo= FlashTattoo::where('user_id', $user)->get();
+        return response()->json($flashTattoo);
+    }
+
     /**
      * Update the specified resource in storage.
      */
