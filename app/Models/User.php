@@ -28,8 +28,6 @@ class User extends Authenticatable implements JWTSubject
         'city',
         'departement',
         'coordonnes',
-        'tattooshop',
-        'tattooshop_id'
     ];
 
     protected $hidden = [
@@ -54,7 +52,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function tattooshop()
     {
-        return $this->belongsTo(Tattooshop::class, 'tattooshop_id');
+        return $this->hasMany(Tattooshop::class, 'user_id');
     }
 
     public function pictures()

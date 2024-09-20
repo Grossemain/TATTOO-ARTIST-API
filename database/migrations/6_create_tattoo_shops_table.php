@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('title', 50)->nullable();
             $table->text('meta_description')->nullable();
             $table->string('img_tattooshop', 255);
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

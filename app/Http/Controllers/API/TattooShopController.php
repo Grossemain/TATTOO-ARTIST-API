@@ -65,6 +65,16 @@ $tattooshop = TattooShop::create(array_merge($request->all(), ['img_tattooshop' 
         return response()->json($tattooShop);
     }
 
+        /**
+     * Display the specified resource.
+     */
+    public function tattooshopByUser($user)
+    {
+        //on gere les tattooshop / user
+        $tattooShop= TattooShop::where('user_id', $user)->get();
+        return response()->json($tattooShop);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -77,6 +87,7 @@ $tattooshop = TattooShop::create(array_merge($request->all(), ['img_tattooshop' 
             'departement'=>'nullable',
             'meta_description'=>'nullable',
             'img_tattooshop' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'user_id' => 'nullable|max:50'
         ]);
 
 

@@ -21,7 +21,8 @@ class TattooShop extends Model
         'departement', 
         'title', 
         'meta_description', 
-        'img_tattooshop'
+        'img_tattooshop',
+        'user_id'
     ];
     
     public function articles()
@@ -31,6 +32,6 @@ class TattooShop extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'tattooshop_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

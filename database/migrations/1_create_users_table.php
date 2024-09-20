@@ -27,10 +27,7 @@ return new class extends Migration
             $table->string('city', 50)->nullable();
             $table->string('departement', 50)->nullable();
             $table->text('coordonnes')->nullable();
-            $table->string('tattooshop', 50)->nullable();
-            $table->string('tattooshop_id', 50)->nullable();
             $table->rememberToken();
-            $table->foreign('tattooshop_id')->references('tattooshop_id')->on('tattooshops')->onDelete('cascade');
             $table->timestamps();
         });
 

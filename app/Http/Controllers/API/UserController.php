@@ -26,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         // On récupère tous les utilisateurs
-        $users = User::with(['tattooshop'])->get();
+        $users = User::all();
         // On retourne les informations des utilisateurs en JSON
         return response()->json($users);
     }
@@ -54,6 +54,33 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    //Methode avec requete à créer pour faire une recherche d'utilisateur / artstyle name.
+    public function searchByArtstyles(Request $request)
+    {
+        $users = User::whereHas('artstyles', function ($query) use ($request) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        })->with('artstyles')->get();
+
+        return response()->json($users);
+    }
+
+        //Methode avec requete à créer pour faire une recherche d'utilisateur / artstyle name + city ou departement
+
+    public function searchByUsersAndArtstyles(Request $request)
+    {
+        $search = $request->search;
+
+        $users = User::where(function ($query) use ($search) {
+            $query->where('city', 'like', '%' . $search . '%')
+                  ->orWhere('departement', 'like', '%' . $search . '%')
+                  ->orWhereHas('artstyles', function ($query) use ($search) {
+                      $query->where('name', 'like', '%' . $search . '%');
+                  });
+        })->with('artstyles')->get();
+
+        return response()->json($users);
+    }
+
     public function update(Request $request, User $user)
     {
         $request->validate([
@@ -64,12 +91,9 @@ class UserController extends Controller
             'tel'=>'nullable',
             'description'=>'nullable',
             'instagram'=>'nullable',
-            
             'city'=>'nullable',
             'departement'=>'nullable',
             'coordonnes'=>'nullable',
-            'tattooshop'=>'nullable',
-            'tattooshop_id'=>'nullable',
         ]);
 
         //validate du changement de l'update de l'image
@@ -101,8 +125,6 @@ class UserController extends Controller
             'city' => $request['city'],
             'departement' => $request['departement'],
             'coordonnes' => $request['coordonnes'],
-            'tattooshop' => $request['tattooshop'],
-            'tattooshop_id' => $request['tattooshop_id'],
             'img_profil' => $filename 
         ]);
 

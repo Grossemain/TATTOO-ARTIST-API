@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/users/search', [UserController::class, 'search'])->name('users.search');
+Route::post('/users/searchByArtstyles', [UserController::class, 'searchByArtstyles']);
+Route::post('/users/searchByUsersAndArtstyles', [UserController::class, 'searchByUsersAndArtstyles']);
 
 
 //Seulement accessible via le JWT
@@ -74,6 +76,8 @@ Route::post('/pictures', [PictureController::class, 'store'])->name('pictures.st
 Route::delete('/pictures/{picture}', [PictureController::class, 'destroy'])->name('pictures.destroy');
 Route::get('/pictureByUser/{user}', [PictureController::class, 'pictureByUser']);
 
+
+
 //Routes vers TattooShop
 
 Route::get('/tattooshops', [TattooShopController::class, 'index'])->name('tattooshops.index');
@@ -81,6 +85,7 @@ Route::get('/tattooshops/{tattooShop}', [TattooShopController::class, 'show'])->
 Route::put('/tattooshops/{tattooShop}', [TattooShopController::class, 'update'])->name('tattooshops.update');
 Route::post('/tattooshops', [TattooShopController::class, 'store'])->name('tattooshops.store');
 Route::delete('/tattooshops/{tattooShop}', [TattooShopController::class, 'destroy'])->name('tattooshops.destroy');
+Route::get('/tattooshopByUser/{user}', [TattooShopController::class, 'tattooshopByUser']);
 
 // //Routes vers UserStyle
 
