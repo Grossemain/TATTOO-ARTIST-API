@@ -73,6 +73,7 @@ class UserController extends Controller
         $users = User::where(function ($query) use ($search) {
             $query->where('city', 'like', '%' . $search . '%')
             ->orWhere('pseudo_user', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like',  '%' . $search . '%')
                   ->orWhere('departement', 'like', '%' . $search . '%')
                   ->orWhereHas('artstyles', function ($query) use ($search) {
                       $query->where('name', 'like', '%' . $search . '%');
