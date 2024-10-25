@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
+use App\Models\TattooShop;
+use App\Models\Picture;
+use App\Models\FlashTattoo;
+use App\Models\ArtStyle;
+
+
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
@@ -52,7 +58,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function tattooshop()
     {
-        return $this->hasMany(Tattooshop::class, 'user_id');
+        return $this->hasMany(TattooShop::class, 'user_id');
     }
 
     public function pictures()
@@ -62,11 +68,11 @@ class User extends Authenticatable implements JWTSubject
 
     public function flashtattoos()
     {
-        return $this->hasMany(Flashtattoo::class, 'user_id');
+        return $this->hasMany(FlashTattoo::class, 'user_id');
     }
 
     public function artstyles()
     {
-        return $this->belongsToMany(Artstyle::class, 'users_art_styles', 'user_id', 'artstyle_id');
+        return $this->belongsToMany(ArtStyle::class, 'users_art_styles', 'user_id', 'artstyle_id');
     }
 }

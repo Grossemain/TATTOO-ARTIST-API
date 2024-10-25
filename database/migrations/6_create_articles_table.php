@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->increments('article_id');
+            $table->uuid('article_id')->primary();  // Utilisation d'un UUID
             $table->string('title', 100);
             $table->text('content');
-            $table->string('img', 50);
-            $table->string('tattooshop_id', 50)->nullable();
+            $table->string('img', 250);
+            $table->unsignedInteger('tattooshop_id')->nullable();
             $table->foreign('tattooshop_id')->references('tattooshop_id')->on('tattooshops')->onDelete('cascade');
             $table->timestamps();
         });

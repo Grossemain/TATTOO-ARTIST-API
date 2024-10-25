@@ -3,8 +3,8 @@
 use App\Http\Controllers\API\ArtStyleController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Request;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\FlashTattooController;
 use App\Http\Controllers\API\PictureController;

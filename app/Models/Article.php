@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\TattooShop;
+
+
 class Article extends Model
 {
     use HasFactory;
@@ -23,6 +26,6 @@ class Article extends Model
 
     public function tattooshop()
     {
-        return $this->belongsTo(Tattooshop::class, 'tattooshop_id');
+        return $this->belongsTo(TattooShop::class, 'tattooshop_id');
     }
 }
