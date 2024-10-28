@@ -27,5 +27,7 @@ jobs:
       run: docker exec laravel-docker-tattooartist bash -c "php artisan db:seed --force"
     - name: Migrer la base de données de test
       run: docker exec laravel-docker-tattooartist bash -c "php artisan migrate --env=testing --force"
+    - name: Peupler la base de données de test
+      run: docker exec laravel-docker-tattooartist bash -c "php artisan db:seed --env=testing --force"
     - name: Exécuter les tests PHPUnit
       run: docker exec laravel-docker-tattooartist bash -c "php artisan test tests/Feature"
