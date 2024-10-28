@@ -13,8 +13,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: //T4tt00Artist//
       MYSQL_DATABASE: tattooartist
-    env_file:
-      - ./docker/.env
     ports:
       - 3306:3306
 
@@ -24,5 +22,3 @@ services:
       - 9001:80
     environment:
       PMA_HOST: tattooartist_db
-    env_file:
-      - ./docker/.env

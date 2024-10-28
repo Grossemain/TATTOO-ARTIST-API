@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('content');
             $table->string('img', 250);
             $table->unsignedInteger('tattooshop_id')->nullable();
-            $table->foreign('tattooshop_id')->references('tattooshop_id')->on('tattooshops')->onDelete('cascade');
+            $table->foreign('tattooshop_id')->references('tattooshop_id')->on('tattoo_shops')->onDelete('cascade');
             $table->timestamps();
         });
     }
