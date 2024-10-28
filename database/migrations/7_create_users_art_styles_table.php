@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('artstyle_id');
             $table->primary(['user_id', 'artstyle_id']);
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('artstyle_id')->references('artstyle_id')->on('artstyles')->onDelete('cascade');
+            $table->foreign('artstyle_id')->references('artstyle_id')->on('art_styles')->onDelete('cascade');
             $table->timestamps();
         });
     }
