@@ -1,6 +1,6 @@
 services:
   laravel-docker:
-    container_name: laravel-docker-romain
+    container_name: laravel-docker-tattooartist
     build: ./
     ports:
       - 8000:80
@@ -10,17 +10,12 @@ services:
      
     
 
-  # vue-docker:
-  #   container_name: vue-docker
-  #   build: ./Cursus-spa
-  #   ports:
-  #     - 80:80
 
-  mysql_db:
+  tattooartist_db:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: laravel-api-players
+      MYSQL_ROOT_PASSWORD: T4tt00Artist1984
+      MYSQL_DATABASE: tattooartist
     ports:
       - 3306:3306
 
@@ -29,5 +24,5 @@ services:
     ports:
       - 9001:80
     environment: 
-      PMA_HOST: mysql_db
+      PMA_HOST: tattooartist_db
       

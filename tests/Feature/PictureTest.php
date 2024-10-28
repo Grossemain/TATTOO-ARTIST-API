@@ -19,61 +19,98 @@ class PictureTest extends TestCase
         // Other initialization code
     }
 
-    /** @test */
-    public function index_pictures()
+    #[\PHPUnit\Framework\Attributes\Test]
+    public function list_pictures()
     {
-        $user = User::factory()->create();
-        $picture = Picture::factory()->create(['user_id' => $user->id]);
+        $user = User::create([
+            'pseudo_user' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $picture = Picture::create([
+            'picture_name' => 'Test Picture',
+            'image' => 'test.jpg',
+            'alt' => 'Test Alt Text',
+            'user_id' => $user->user_id
+        ]);
 
         $response = $this->actingAs($user)->getJson('/api/pictures');
 
         $response->assertStatus(200)
-                 ->assertJsonFragment(['id' => $picture->id]);
+                 ->assertJsonFragment(['picture_id' => $picture->picture_id]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function create_a_picture()
     {
         Storage::fake('public');
 
-        $user = User::factory()->create();
+        $user = User::create([
+            'pseudo_user' => 'Test2 User',
+            'email' => 'test2@example.com',
+            'password' => bcrypt('password')
+        ]);
+
         $data = [
-            'picture_name' => 'Test Picture',
-            'image' => UploadedFile::fake()->image('test.jpg'),
-            'alt' => 'Test Alt Text'
+            'picture_name' => 'Test2 Picture',
+            'image' => UploadedFile::fake()->image('test2.jpg'),
+            'alt' => 'Test Alt Text2',
+            'user_id' => $user->user_id
         ];
 
         $response = $this->actingAs($user)->postJson('/api/pictures', $data);
 
         $response->assertStatus(200)
-                 ->assertJsonFragment(['picture_name' => 'Test Picture']);
+                 ->assertJsonFragment(['picture_name' => 'Test2 Picture']);
 
-        $this->assertDatabaseHas('pictures', ['picture_name' => 'Test Picture']);
+        $this->assertDatabaseHas('pictures', ['picture_name' => 'Test2 Picture']);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function show_a_picture()
     {
-        $user = User::factory()->create();
-        $picture = Picture::factory()->create(['user_id' => $user->id]);
+        $user = User::create([
+            'pseudo_user' => 'Test3 User',
+            'email' => 'test3@example.com',
+            'password' => bcrypt('password')
+        ]);
 
-        $response = $this->actingAs($user)->getJson('/api/pictures/' . $picture->id);
+        $picture = Picture::create([
+            'picture_name' => 'Test3 Picture',
+            'image' => 'test3.jpg',
+            'alt' => 'Test Alt Text3',
+            'user_id' => $user->user_id
+        ]);
+
+        $response = $this->actingAs($user)->getJson('/api/pictures/' . $picture->picture_id);
 
         $response->assertStatus(200)
-                 ->assertJsonFragment(['id' => $picture->id]);
+                 ->assertJsonFragment(['picture_id' => $picture->picture_id]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function update_a_picture()
     {
-        $user = User::factory()->create();
-        $picture = Picture::factory()->create(['user_id' => $user->id]);
+        $user = User::create([
+            'pseudo_user' => 'Test User4',
+            'email' => 'test4@example.com',
+            'password' => bcrypt('password')
+        ]);
+
+        $picture = Picture::create([
+            'picture_name' => 'Test Picture4',
+            'image' => 'test4.jpg',
+            'alt' => 'Test Alt Text4',
+            'user_id' => $user->user_id
+        ]);
+
         $data = [
             'picture_name' => 'Updated Picture Name',
             'alt' => 'Updated Alt Text'
         ];
 
-        $response = $this->actingAs($user)->putJson('/api/pictures/' . $picture->id, $data);
+        $response = $this->actingAs($user)->putJson('/api/pictures/' . $picture->picture_id, $data);
 
         $response->assertStatus(200)
                  ->assertJsonFragment(['status' => 'Mise à jour avec succès']);
@@ -81,17 +118,27 @@ class PictureTest extends TestCase
         $this->assertDatabaseHas('pictures', ['picture_name' => 'Updated Picture Name']);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function delete_a_picture()
     {
-        $user = User::factory()->create();
-        $picture = Picture::factory()->create(['user_id' => $user->id]);
+        $user = User::create([
+            'pseudo_user' => 'Test5 User',
+            'email' => 'test5@example.com',
+            'password' => bcrypt('password')
+        ]);
 
-        $response = $this->actingAs($user)->deleteJson('/api/pictures/' . $picture->id);
+        $picture = Picture::create([
+            'picture_name' => 'Test5 Picture',
+            'image' => 'test5.jpg',
+            'alt' => 'Test Alt Text5',
+            'user_id' => $user->user_id
+        ]);
+
+        $response = $this->actingAs($user)->deleteJson('/api/pictures/' . $picture->picture_id);
 
         $response->assertStatus(200)
                  ->assertJsonFragment(['status' => 'Supprimer avec succès']);
 
-        $this->assertDatabaseMissing('pictures', ['id' => $picture->id]);
+        $this->assertDatabaseMissing('pictures', ['picture_id' => $picture->picture_id]);
     }
 }
