@@ -25,6 +25,9 @@ jobs:
       run: docker exec laravel-docker-tattooartist bash -c "php artisan migrate --force"
     - name: Peupler la base de données
       run: docker exec laravel-docker-tattooartist bash -c "php artisan db:seed --force"
+    - name: Dormir pendant 10 secondes
+      run: sleep 10s
+      shell: bash
     - name: Migrer la base de données de test
       run: docker exec laravel-docker-tattooartist bash -c "php artisan migrate --env=testing --force"
     - name: Peupler la base de données de test

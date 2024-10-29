@@ -23,7 +23,7 @@ class PictureTest extends TestCase
     public function list_pictures()
     {
         $user = User::create([
-            // 'role_id' => 1,
+            'role_id' => 1,
             'pseudo_user' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('password')
