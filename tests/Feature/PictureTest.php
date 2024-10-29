@@ -51,7 +51,12 @@ class PictureTest extends TestCase
     {
         Storage::fake('public');
 
+        $role = Role:: create([
+            'name'=> 'user test',
+        ]);
+
         $user = User::create([
+            'role_id' => $role->id,
             'pseudo_user' => 'Test2 User',
             'email' => 'test2@example.com',
             'password' => bcrypt('password')
@@ -75,7 +80,12 @@ class PictureTest extends TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function show_a_picture()
     {
+        $role = Role:: create([
+            'name'=> 'user test',
+        ]);
+
         $user = User::create([
+            'role_id' => $role->id,
             'pseudo_user' => 'Test3 User',
             'email' => 'test3@example.com',
             'password' => bcrypt('password')
@@ -97,7 +107,12 @@ class PictureTest extends TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function update_a_picture()
     {
+        $role = Role:: create([
+            'name'=> 'user test',
+        ]);
+
         $user = User::create([
+            'role_id' => $role->id,
             'pseudo_user' => 'Test User4',
             'email' => 'test4@example.com',
             'password' => bcrypt('password')
@@ -126,7 +141,12 @@ class PictureTest extends TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function delete_a_picture()
     {
+        $role = Role:: create([
+            'name'=> 'user test',
+        ]);
+
         $user = User::create([
+            'role_id' => $role->id,
             'pseudo_user' => 'Test5 User',
             'email' => 'test5@example.com',
             'password' => bcrypt('password')
