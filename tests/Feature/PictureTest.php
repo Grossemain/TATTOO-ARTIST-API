@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Role;
 
 class PictureTest extends TestCase
 {
@@ -22,8 +23,11 @@ class PictureTest extends TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function list_pictures()
     {
+        $role = Role:: create([
+            'name'=> 'user test',
+        ]);
         $user = User::create([
-            'role_id' => 1,
+            'role_id' => $role->id,
             'pseudo_user' => 'Test User',
             'email' => 'test@example.com',
             'password' => bcrypt('password')
