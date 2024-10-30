@@ -67,6 +67,7 @@ class FlashTattooTest extends TestCase
             'title' => 'Test Flash Tattoo',
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
+            'disponibility' => 'true',
             'img_flashtattoo' => UploadedFile::fake()->image('test.jpg')
         ];
 
@@ -97,6 +98,7 @@ class FlashTattooTest extends TestCase
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
             'img_flashtattoo' => 'test.jpg',
+            'disponibility' => 'true',
             'user_id' => $user->user_id
         ]);
 
@@ -125,6 +127,7 @@ class FlashTattooTest extends TestCase
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
             'img_flashtattoo' => 'test.jpg',
+            'disponibility' => 'true',
             'user_id' => $user->user_id
         ]);
 
@@ -161,6 +164,7 @@ class FlashTattooTest extends TestCase
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
             'img_flashtattoo' => 'test.jpg',
+            'disponibility' => 'true',
             'user_id' => $user->user_id
         ]);
 
