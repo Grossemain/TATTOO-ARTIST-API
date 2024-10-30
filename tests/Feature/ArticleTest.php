@@ -41,7 +41,7 @@ class ArticleTest extends TestCase
             'user_id' => $user->user_id,
             'tattooshop_id' => $user->tattooshop_id
         ]);
-
+dd($article);
         $response = $this->actingAs($user)->getJson('/api/articles');
 
         $response->assertStatus(200)
