@@ -23,9 +23,9 @@ class ArtStyleTest extends TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function list_artstyles()
     {
-        $role = Role:: create([
-            'name'=> 'user test',
-        ]);
+        // $role = Role:: create([
+        //     'name'=> 'user test',
+        // ]);
         $user = User::create([
             'role_id' => 2,
             'pseudo_user' => 'Test User',
@@ -33,13 +33,11 @@ class ArtStyleTest extends TestCase
             'password' => bcrypt('password')
         ]);
 
-        $artStyle = ArtStyle::all();
-
-        // $artStyle = ArtStyle::create([
-        //     'name' => 'Test Art Style',
-        //     'description' => 'Test Description',
-        //     'img_style' => 'test.jpg'
-        // ]);
+        $artStyle = ArtStyle::create([
+            'name' => 'Test Art Style',
+            'description' => 'Test Description',
+            'img_style' => 'test.jpg'
+        ]);
 
         $response = $this->actingAs($user)->getJson('/api/artstyles');
 
