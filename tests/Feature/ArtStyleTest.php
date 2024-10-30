@@ -21,20 +21,24 @@ class ArtStyleTest extends TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
-    public function it_can_list_art_styles()
+    public function list_art_styles()
     {
-        // Crée quelques exemples d'ArtStyle
-        $artStyles = ArtStyle::factory()->count(3)->create();
+        // Assure-toi que les seeders ont bien été exécutés
+        $this->artisan('db:seed');
 
         // Fait une requête GET à l'endpoint index
         $response = $this->getJson('/api/artstyles');
 
+        // Récupère les ArtStyles de la base de données
+        $artStyles = ArtStyle::all();
+
         // Vérifie que la réponse est correcte
         $response->assertStatus(200)
-                 ->assertJsonCount(3)
-                 ->assertJsonFragment(['artstyle_id' => $artStyles[0]->artstyle_id])
-                 ->assertJsonFragment(['artstyle_id' => $artStyles[1]->artstyle_id])
-                 ->assertJsonFragment(['artstyle_id' => $artStyles[2]->artstyle_id]);
+                 ->assertJsonCount($artStyles->count());
+
+        foreach ($artStyles as $artStyle) {
+            $response->assertJsonFragment(['artstyle_id' => $artStyle->artstyle_id]);
+        }
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
