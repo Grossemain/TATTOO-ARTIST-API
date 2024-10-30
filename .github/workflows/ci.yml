@@ -35,8 +35,8 @@ jobs:
     - name: Exécuter les tests PHPUnit
       run: docker exec laravel-docker-tattooartist bash -c "php artisan test tests/Feature"
     - name: Deploiement continue
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.SERVER }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
