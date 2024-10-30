@@ -13,7 +13,7 @@ class TattooShop extends Model
     use HasFactory;
 
     protected $primaryKey = 'tattooshop_id';
-    public $incrementing = false;
+    // public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
