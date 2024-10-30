@@ -42,21 +42,15 @@ class ArtStyleTest extends TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
-    public function create_an_artstyle()
+    public function create_an_art_style()
     {
+        // Assure-toi que les seeders ont bien été exécutés
+        $this->artisan('db:seed');
+
+        // Récupère un utilisateur existant de la base de données
+        $user = User::first();
+
         Storage::fake('public');
-
-        $role = Role:: create([
-            'name'=> 'user test',
-        ]);
-
-        $user = User::create([
-            'role_id' => 2,
-            'pseudo_user' => 'Test2 User',
-            'email' => 'test2@example.com',
-            'password' => bcrypt('password')
-        ]);
-
 
         $data = [
             'name' => 'Test Art Style',
