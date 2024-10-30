@@ -13,7 +13,7 @@ class FlashTattoo extends Model
     use HasFactory;
 
     protected $primaryKey = 'flashtattoo_id';
-    public $incrementing = false;
+    // public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [

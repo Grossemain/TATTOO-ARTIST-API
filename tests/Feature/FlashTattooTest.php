@@ -37,8 +37,8 @@ class FlashTattooTest extends TestCase
             'title' => 'Test Flash Tattoo',
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
-            'img_flashtattoo' => 'test.jpg',
             'disponibility' => 1,
+            'img_flashtattoo' => 'test.jpg',
             'user_id' => $user->user_id
         ]);
 
@@ -77,7 +77,7 @@ class FlashTattooTest extends TestCase
         $response->assertStatus(200)
                  ->assertJsonFragment(['title' => 'Test Flash Tattoo']);
 
-        $this->assertDatabaseHas('flashtattoos', ['title' => 'Test Flash Tattoo']);
+        $this->assertDatabaseHas('flash_tattoos', ['title' => 'Test Flash Tattoo']);
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
@@ -98,8 +98,8 @@ class FlashTattooTest extends TestCase
             'title' => 'Test Flash Tattoo',
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
+            'disponibility' => 1,
             'img_flashtattoo' => 'test.jpg',
-            'disponibility' => 0,
             'user_id' => $user->user_id
         ]);
 
@@ -127,15 +127,17 @@ class FlashTattooTest extends TestCase
             'title' => 'Test Flash Tattoo',
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
-            'img_flashtattoo' => 'test.jpg',
             'disponibility' => 1,
+            'img_flashtattoo' => 'test.jpg',
             'user_id' => $user->user_id
         ]);
 
         $data = [
             'title' => 'Updated Flash Tattoo',
             'h1_title' => 'Updated H1 Title',
-            'content' => 'Updated Content'
+            'content' => 'Updated Content',
+            'disponibility' => 0,
+            'img_flashtattoo' => 'test.jpg',
         ];
 
         $response = $this->actingAs($user)->putJson('/api/flashtattoos/' . $flashTattoo->flashtattoo_id, $data);
@@ -143,7 +145,7 @@ class FlashTattooTest extends TestCase
         $response->assertStatus(200)
                  ->assertJsonFragment(['status' => 'Mise à jour avec succès']);
 
-        $this->assertDatabaseHas('flashtattoos', ['title' => 'Updated Flash Tattoo']);
+        $this->assertDatabaseHas('flash_tattoos', ['title' => 'Updated Flash Tattoo']);
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
@@ -160,12 +162,13 @@ class FlashTattooTest extends TestCase
             'password' => bcrypt('password')
         ]);
 
+
         $flashTattoo = FlashTattoo::create([
             'title' => 'Test Flash Tattoo',
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
-            'img_flashtattoo' => 'test.jpg',
             'disponibility' => 1,
+            'img_flashtattoo' => 'test.jpg',
             'user_id' => $user->user_id
         ]);
 
@@ -174,6 +177,6 @@ class FlashTattooTest extends TestCase
         $response->assertStatus(200)
                  ->assertJsonFragment(['status' => 'Supprimer avec succès']);
 
-        $this->assertDatabaseMissing('flashtattoos', ['flashtattoo_id' => $flashTattoo->flashtattoo_id]);
+        $this->assertDatabaseMissing('flash_tattoos', ['flashtattoo_id' => $flashTattoo->flashtattoo_id]);
     }
 }
