@@ -38,6 +38,7 @@ class FlashTattooTest extends TestCase
             'h1_title' => 'Test H1 Title',
             'content' => 'Test Content',
             'img_flashtattoo' => 'test.jpg',
+            'disponibility' => 'true',
             'user_id' => $user->user_id
         ]);
 
