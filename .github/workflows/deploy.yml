@@ -1,11 +1,11 @@
-name: CI
+name: DEPLOY
 on:
   push:
     branches:
       - "main"
 jobs:
   docker:
-    timeout-minutes: 20
+    timeout-minutes: 120
     runs-on: ubuntu-latest
     
     steps:
@@ -41,3 +41,8 @@ jobs:
         server-dir: ${{ secrets.SERVERDIR }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/vendor/**
